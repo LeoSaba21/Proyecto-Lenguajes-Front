@@ -1,0 +1,44 @@
+{{
+
+  "employees": [  "employees": [
+
+    {"id":1,"name":"John Doe","email":"john@example.com","phone":"+1 555-0100","role":"Manager","position":"Manager","status":"active","present":true,"branch":"SUCURSAL A"},  {"id":1,"name":"John Doe","email":"john@example.com","phone":"+1 555-0100","role":"Manager","position":"Manager","status":"active","present":true,"branch":"Sucursal A"},
+
+    {"id":2,"name":"Jane Smith","email":"jane@example.com","phone":"+1 555-0101","role":"Sales","position":"Sales Associate","status":"active","present":true,"branch":"SUCURSAL B"},  "branch":"SUCURSAL A"},
+
+    {"id":3,"name":"Robert Johnson","email":"robert@example.com","phone":"+1 555-0102","role":"Developer","position":"Software Engineer","status":"on_leave","present":false,"branch":"SUCURSAL C"},    {"id":2,"name":"Jane Smith","email":"jane@example.com","phone":"+1 555-0101","role":"Sales","position":"Sales Associate","status":"active","present":true,"branch":"SUCURSAL B"},,
+
+    {"id":4,"name":"Emily Brown","email":"emily@example.com","phone":"+1 555-0103","role":"Support","position":"Support Specialist","status":"active","present":true,"branch":"SUCURSAL D"},  {"id":3,"name":"Robert Johnson","email":"robert@example.com","phone":"+1 555-0102","role":"Developer","position":"Software Engineer","status":"on_leave","present":false,"branch":"Sucursal C"},
+
+    {"id":5,"name":"Carlos García","email":"carlos.g@example.com","phone":"+51 999-000-111","role":"Developer","position":"Software Engineer","status":"active","present":true,"branch":"SUCURSAL A"},  {"id":4,"name":"Emily Brown","email":"emily@example.com","phone":"+1 555-0103","role":"Support","position":"Support Specialist","status":"active","present":true,"branch":"Sucursal D"},
+
+    {"id":6,"name":"María López","email":"maria.l@example.com","phone":"+51 988-222-333","role":"Sales","position":"Sales Associate","status":"active","present":false,"branch":"SUCURSAL B"},  {"id":5,"name":"Carlos García","email":"carlos.g@example.com","phone":"+51 999-000-111","role":"Developer","position":"Software Engineer","status":"active","present":true,"branch":"Sucursal A"},
+
+    {"id":7,"name":"Luisa Fernández","email":"luisa.f@example.com","phone":"+51 977-333-444","role":"Support","position":"Support Specialist","status":"on_leave","present":false,"branch":"SUCURSAL C"},  {"id":6,"name":"María López","email":"maria.l@example.com","phone":"+51 988-222-333","role":"Sales","position":"Sales Associate","status":"active","present":false,"branch":"Sucursal B"},
+
+    {"id":8,"name":"Miguel Ángel","email":"miguel.a@example.com","phone":"+34 600-111-222","role":"Manager","position":"Manager","status":"active","present":true,"branch":"SUCURSAL D"},  {"id":7,"name":"Luisa Fernández","email":"luisa.f@example.com","phone":"+51 977-333-444","role":"Support","position":"Support Specialist","status":"on_leave","present":false,"branch":"Sucursal C"},
+
+    {"id":9,"name":"Ana Ruiz","email":"ana.r@example.com","phone":"+34 611-222-333","role":"Developer","position":"Software Engineer","status":"active","present":true,"branch":"SUCURSAL A"},  {"id":8,"name":"Miguel Ángel","email":"miguel.a@example.com","phone":"+34 600-111-222","role":"Manager","position":"Manager","status":"active","present":true,"branch":"Sucursal D"},
+
+    {"id":10,"name":"Pedro Alvarez","email":"pedro.a@example.com","phone":"+34 622-333-444","role":"Sales","position":"Sales Associate","status":"terminated","present":false,"branch":"SUCURSAL B"},  {"id":9,"name":"Ana Ruiz","email":"ana.r@example.com","phone":"+34 611-222-333","role":"Developer","position":"Software Engineer","status":"active","present":true,"branch":"Sucursal A"},
+
+    {"id":11,"name":"Lucía Mendez","email":"lucia.m@example.com","phone":"+52 55-4444-5555","role":"Support","position":"Support Specialist","status":"active","present":true,"branch":"SUCURSAL C"},  {"id":10,"name":"Pedro Alvarez","email":"pedro.a@example.com","phone":"+34 622-333-444","role":"Sales","position":"Sales Associate","status":"terminated","present":false,"branch":"Sucursal B"},
+
+    {"id":12,"name":"Diego Torres","email":"diego.t@example.com","phone":"+52 55-6666-7777","role":"Developer","position":"Software Engineer","status":"active","present":true,"branch":"SUCURSAL D"},  {"id":11,"name":"Lucía Mendez","email":"lucia.m@example.com","phone":"+52 55-4444-5555","role":"Support","position":"Support Specialist","status":"active","present":true,"branch":"Sucursal C"},
+
+    {"id":13,"name":"Raúl Ortega","email":"raul.o@example.com","phone":"+57 300-123-4567","role":"Sales","position":"Sales Associate","status":"active","present":false,"branch":"SUCURSAL A"},  {"id":12,"name":"Diego Torres","email":"diego.t@example.com","phone":"+52 55-6666-7777","role":"Developer","position":"Software Engineer","status":"active","present":true,"branch":"Sucursal D"},
+
+    {"id":14,"name":"Sofía Peña","email":"sofia.p@example.com","phone":"+57 310-987-6543","role":"Manager","position":"Manager","status":"active","present":true,"branch":"SUCURSAL B"},  {"id":13,"name":"Raúl Ortega","email":"raul.o@example.com","phone":"+57 300-123-4567","role":"Sales","position":"Sales Associate","status":"active","present":false,"branch":"Sucursal A"},
+
+    {"id":15,"name":"Javier Soto","email":"javier.s@example.com","phone":"+1 555-0199","role":"Developer","position":"Software Engineer","status":"on_leave","present":false,"branch":"SUCURSAL C"}  {"id":14,"name":"Sofía Peña","email":"sofia.p@example.com","phone":"+57 310-987-6543","role":"Manager","position":"Manager","status":"active","present":true,"branch":"Sucursal B"},
+
+  ],  {"id":15,"name":"Javier Soto","email":"javier.s@example.com","phone":"+1 555-0199","role":"Developer","position":"Software Engineer","status":"on_leave","present":false,"branch":"Sucursal C"}
+
+  "roles": ["Manager","Sales","Developer","Support"],  ],
+
+  "positions": ["Manager","Sales Associate","Software Engineer","Support Specialist"],  "roles": ["Manager","Sales","Developer","Support"],
+
+  "branches": ["SUCURSAL A","SUCURSAL B","SUCURSAL C","SUCURSAL D"]  "positions": ["Manager","Sales Associate","Software Engineer","Support Specialist"],
+
+}  "branches": ["Sucursal A","Sucursal B","Sucursal C","Sucursal D"]
+}
