@@ -1,13 +1,177 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gestión de Empleados - Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <header class="topbar">
+      <div class="brand"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3" fill="#fff"/><path d="M4 20c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>HRM Dashboard</div>
+      <nav class="nav">
+        <a class="active">Tablero</a>
+        <a>Empleados</a>
+        <a>Asistencia</a>
+        <a>Reportes</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="summary-cards">
+        <div class="card small">
+          <div class="label">EMPLEADOS</div>
+          <div class="value"><svg width="18" height="18" viewBox="0 0 24 24" fill="#2b7cff" style="vertical-align:middle;margin-right:8px"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 3.58-4 6-4s6 1.79 6 4v1H6v-1z"/></svg><span id="totalEmployees">0</span></div>
+        </div>
+        <div class="card small">
+          <div class="label">ROLES</div>
+          <div id="totalRoles" class="value">0</div>
+        </div>
+        <div class="card small">
+          <div class="label">SUCURSALES</div>
+          <div id="totalBranches" class="value">0</div>
+        </div>
+        <div class="card small">
+          <div class="label">ASISTENCIA</div>
+          <div id="presentCount" class="value">0</div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <aside class="col left">
+          <div class="card small-list">
+            <h4>Employees</h4>
+            <ul id="quickEmployees"></ul>
+          </div>
+
+          <div class="card small-list">
+            <h4>SUCURSALES</h4>
+            <ul id="branchesList">
+              <li>Sucursal A</li>
+              <li>Sucursal B</li>
+              <li>Sucursal C</li>
+              <li>Sucursal D</li>
+            </ul>
+          </div>
+        </aside>
+
+        <section class="col middle panel employees">
+          <div class="panel-header">
+            <h3>Empleados</h3>
+            <div class="actions">
+              <button id="addEmployeeBtn">+ Nuevo</button>
+              <input id="search" placeholder="Buscar..." />
+            </div>
+          </div>
+          <div class="panel-filters">
+            <select id="filterRole"><option value="">Todos los roles</option></select>
+            <select id="filterStatus"><option value="">Todos los estados</option><option value="active">Activo</option><option value="on_leave">En licencia</option><option value="terminated">Terminado</option></select>
+            <button id="exportJson">Exportar JSON</button>
+            <button id="exportCsv">Exportar CSV</button>
+            <input type="file" id="importFile" accept="application/json" />
+          </div>
+            <div class="panel-body">
+              <table id="employeesTable">
+                <thead>
+                  <tr><th data-sort="name">Nombre ▾</th><th data-sort="role">Rol</th><th data-sort="position">Puesto</th><th data-sort="branch">Sucursal</th><th data-sort="status">Estado</th><th>Acciones</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+              <div class="pagination" style="display:flex;gap:8px;align-items:center;margin-top:10px">
+                <button id="prevPage">Anterior</button>
+                <span id="pageInfo">Página 1</span>
+                <button id="nextPage">Siguiente</button>
+                <label style="margin-left:12px">Tamaño: <select id="pageSize"><option>5</option><option selected>10</option><option>20</option></select></label>
+              </div>
+            </div>
+        </section>
+
+        <aside class="col right">
+          <div class="card">
+            <h4>Resumen de Asistencia</h4>
+            <canvas id="attendanceChart" width="300" height="150"></canvas>
+          </div>
+
+          <div class="card">
+            <h4>Reportes Recientes</h4>
+            <table id="reportsTable" class="reports">
+              <thead><tr><th>Fecha</th><th>Nombre</th><th>Tipo</th><th>Estado</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <!-- Modal form -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="modalTitle">Nuevo Empleado</h3>
+        <form id="employeeForm">
+          <div class="row">
+            <label>Nombre completo</label>
+            <input name="name" required />
+            <div class="field-error" data-for="name" style="color:#b91c1c;display:none;font-size:13px;margin-top:4px"></div>
+          </div>
+          <div class="row">
+            <label>Correo</label>
+            <input name="email" type="email" />
+            <div class="field-error" data-for="email" style="color:#b91c1c;display:none;font-size:13px;margin-top:4px"></div>
+          </div>
+          <div class="row">
+            <label>Teléfono</label>
+            <input name="phone" />
+            <div class="field-error" data-for="phone" style="color:#b91c1c;display:none;font-size:13px;margin-top:4px"></div>
+          </div>
+          <div class="row">
+            <label>Rol</label>
+            <select name="role" id="roleSelect"></select>
+          </div>
+          <div class="row">
+            <label>Puesto</label>
+            <select name="position" id="positionSelect"></select>
+          </div>
+          <div class="row">
+            <label>Sucursal</label>
+            <select name="branch" id="branchSelect" required>
+              <option value="">Seleccione una sucursal</option>
+              <option value="SUCURSAL A">SUCURSAL A</option>
+              <option value="SUCURSAL B">SUCURSAL B</option>
+              <option value="SUCURSAL C">SUCURSAL C</option>
+              <option value="SUCURSAL D">SUCURSAL D</option>
+            </select>
+            <div class="field-error" data-for="branch" style="color:#b91c1c;display:none;font-size:13px;margin-top:4px"></div>
+          </div>
+          <div class="row">
+            <label>Estado laboral</label>
+            <select name="status">
+              <option value="active">Activo</option>
+              <option value="on_leave">En licencia</option>
+              <option value="terminated">Terminado</option>
+            </select>
+          </div>
+          <div class="row actions">
+            <button type="submit">Guardar</button>
+            <button type="button" id="cancelBtn">Cancelar</button>
+          </div>
+          <div id="formError" class="form-error" style="color:#b91c1c;margin-top:6px;display:none"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Confirm modal -->
+    <div id="confirmModal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="confirmTitle">Confirmar</h3>
+        <p id="confirmMessage">¿Desea continuar?</p>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+          <button id="confirmCancel">Cancelar</button>
+          <button id="confirmOk">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
